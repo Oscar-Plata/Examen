@@ -22,7 +22,7 @@
         <p:card style="width: auto; margin-bottom: 2rem; margin-right: 2em;margin-left: 2rem; margin-top: 3.5rem">
             <p:outputLabel value="REGISTRO DE PROFESORES" class="title"/>
             <p:divider />
-            <h:form>
+            <h:form id="frm">
                 <p:growl id="messages" showDetail="true" />  
                 <p:panelGrid columns="2" styleClass="ui-noborder" style="width: 100%">
                     <p:panelGrid columns="1"   style="width: 100%">
@@ -57,19 +57,23 @@
 
                     <p:panelGrid columns="1" style="width: 100%; text-align: center;">
                         <p:graphicImage url="resources/id-card.png" width="200vw" height="auto" style="margin: auto;"/>
-                        <p:commandButton  update="messages cbUnidades nombre apellido rfc" style="background-color: #9fd9b3; color: black; font-size: 32px;" value="Guardar" actionListener="#{profUI.registrarProfesor()}"/>
+                        <p:commandButton  update="messages cbuni nombre apellido rfc" style="background-color: #9fd9b3; color: black; font-size: 32px;" value="Guardar" actionListener="#{profUI.registrarProfesor()}"/>
                     </p:panelGrid>
                 </p:panelGrid>
                 <p:outputLabel value="UNIDADES DE APRENDIZAJE ASIGNADAS" class="title"/>
-                <p:commandButton icon="pi pi-refresh" styleClass="rounded-button ui-button-info"  update="cbUnidades" actionListener="#{profUI.recargarMaterias()}" style="margin-left: 2em;"/>
-<!--                <p:commandButton value="Recargar" update="cbUnidades" actionListener="#{profUI.recargarMaterias()}"/>-->
+                
                 <p:divider />
-                <p:selectManyCheckbox id="cbUnidades" value="#{profUI.materiasSeleccionadas}" layout="responsive"
+                <p:selectManyCheckbox id="cbuni" value="#{profUI.materiasSeleccionadas}" layout="responsive"
                                       columns="3" >
                     <f:selectItems value="#{profUI.materias}" var="materia" itemLabel="#{materia.nombre}" itemValue="#{materia.idUnidad}"/>
                 </p:selectManyCheckbox>
             </h:form>
 
+            <h:form>
+                    <p:commandButton id="reload" icon="pi pi-refresh" styleClass="rounded-button ui-button-info"  update=":frm:messages :frm:cbuni" actionListener="#{profUI.recargarMaterias()}" />
+    <!--                <p:commandButton value="Recargar" update="cbUnidades" actionListener="#{profUI.recargarMaterias()}"/>-->
+            </h:form>
+            
         </p:card>
 
     </h:body>

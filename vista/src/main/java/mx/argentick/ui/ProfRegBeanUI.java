@@ -52,10 +52,12 @@ public class ProfRegBeanUI implements Serializable {
         System.out.println("Cargando materias desde BD");
         try {
             materias = helperUnidad.obtenerTodas();
-            System.out.println("materias " + materias);
+            System.out.println("materias " + materias.size());
+            mensajeInfo("Unidades de aprendizaje", "Disponibles: "+materias.size(), FacesMessage.SEVERITY_INFO);
 
         } catch (Exception e) {
             System.out.println("error " + e);
+            mensajeInfo("Unidades de aprendizaje", "Sin existencia", FacesMessage.SEVERITY_WARN);
         }
     }
 
@@ -97,14 +99,12 @@ public class ProfRegBeanUI implements Serializable {
                 mensajeInfo("Registro Fallido", "RFC Repetido", FacesMessage.SEVERITY_WARN);
             }
         } catch (Exception e) {
-            
             mensajeInfo("FATAL ERROR", e.toString(), FacesMessage.SEVERITY_FATAL);
         }
     }
 
     private void mensajeInfo(String titulo, String texto, Severity tipo) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(tipo, "\t"+titulo, texto));
-
     }
 
     /**
