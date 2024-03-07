@@ -1,0 +1,6 @@
+mx\argentick\facade\FacadeUnidad.class
+mx\argentick\delegate\DelegateProfesor.class
+mx\argentick\delegate\DelegateUnidad.class
+mx\argentick\facade\FacadeProfesor.class
+test\test.class
+mx\argentick\integracion\ServiceFacadeLocator.class

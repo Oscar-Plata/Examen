@@ -1,0 +1,7 @@
+mx\argentick\DAO\UnidadDAO.class
+mx\argentick\integracion\ServiceLocator.class
+mx\argentick\persistencia\HibernateUtil.class
+mx\argentick\persistencia\AbstractDAO.class
+mx\argentick\DAO\ProfesorDAO.class
+mx\argentick\persistencia\InterfaceDAO.class
+test\test.class
