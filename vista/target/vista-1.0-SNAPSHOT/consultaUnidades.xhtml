@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Consulta Unidades</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="#{request.contextPath}/resources/style.css" />
+    </h:head>
+
+    <h:body>
+
+        <p:toolbar class="header" style="background-color: #9fd9b3;">
+            <p:toolbarGroup align="left">
+                <p:button outcome="index" icon="pi pi-home" styleClass="rounded-button ui-button-warning"  style="margin-right: 2em;"/>
+                <p:outputLabel value="SCPUA - Sistema Catalogo de Profesores y Unidades de Aprendizaje" class="title"/>
+            </p:toolbarGroup>
+        </p:toolbar> 
+        
+        <p:card style="width: auto; margin-right: 2em;margin-left: 2rem; margin-top: 3.5rem">
+            <p:outputLabel value="CONSULTA DE UNIDADES DE APRENDIZAJE" class="title"/>
+            <p:divider />
+            <h:form>
+                <p:growl id="messages" showDetail="true" />  
+                <p:dataTable id="tablaUnidades" value="#{uniCons.lista}" var="u" scrollable="true" scrollHeight="300">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{u.idUnidad}"/>
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{u.nombre}"/>
+                    </p:column>
+                     <p:column headerText="Horas clase">
+                         <h:outputText value="#{u.horasClase}"/>
+                    </p:column>
+                    <p:column headerText="Horas taller">
+                        <h:outputText value="#{u.horasTaller}"/>
+                    </p:column>
+                    <p:column headerText="Horas laboratorio">
+                        <h:outputText value="#{u.horasLab}"/>
+                    </p:column>
+                    <p:column headerText="Profesores Asignados">
+                        <p:dataList value="#{u.profesorList}" var="p" styleClass="ui-noborder">
+                            <h:outputText value="#{p.getNombreCompleto()}"/>
+                        </p:dataList>
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton id="reload" icon="pi pi-refresh" styleClass="rounded-button ui-button-info" update="messages tablaUnidades" actionListener="#{uniCons.recargarLista()}" />
+            </h:form>
+        </p:card>
+    </h:body>
+</html>

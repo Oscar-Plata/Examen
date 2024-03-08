@@ -23,41 +23,41 @@ import mx.argentick.helper.ProfRegHelper;
  *
  * @author Lenovo PC
  */
-
-@ManagedBean(name="profCons")
+@ManagedBean(name = "profCons")
 @SessionScoped
 public class ProfConsBeanUI implements Serializable {
+
     private List<Profesor> lista;
     private ProfRegHelper helper;
-    
-    public ProfConsBeanUI(){
-        helper=new ProfRegHelper();
+
+    public ProfConsBeanUI() {
+        helper = new ProfRegHelper();
     }
-    
+
     @PostConstruct
-    public void init(){
-        lista= new ArrayList<>();
+    public void init() {
+        lista = new ArrayList<>();
         recargarLista();
     }
-    
-    public void recargarLista(){
+
+    public void recargarLista() {
         System.out.println("Cargando lista de profesores");
         try {
-            lista=helper.obtenerTodosOrden();
-            System.out.println(lista);  
-            if(lista.size()>0){
-                 mensajeInfo("Tabla Actualizada", "Profesores: "+lista.size(), FacesMessage.SEVERITY_INFO);
-            }else{
-                 mensajeInfo("Aviso", "No hay profesores registrados", FacesMessage.SEVERITY_WARN);
-            } 
+            lista = helper.obtenerTodosOrden();
+            System.out.println(lista);
+            if (lista.size() > 0) {
+                mensajeInfo("Tabla Actualizada", "Profesores: " + lista.size(), FacesMessage.SEVERITY_INFO);
+            } else {
+                mensajeInfo("Aviso", "No hay profesores registrados", FacesMessage.SEVERITY_WARN);
+            }
         } catch (Exception e) {
-            System.out.println("Error fatal: "+ e);
+            System.out.println("Error fatal: " + e);
             mensajeInfo("Error Interno", e.toString(), FacesMessage.SEVERITY_FATAL);
         }
     }
-    
+
     private void mensajeInfo(String titulo, String texto, FacesMessage.Severity tipo) {
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(tipo, "\t"+titulo, texto));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(tipo, "\t" + titulo, texto));
     }
 
     public List<Profesor> getLista() {
@@ -67,7 +67,5 @@ public class ProfConsBeanUI implements Serializable {
     public void setLista(List<Profesor> lista) {
         this.lista = lista;
     }
-    
-    
-    
+
 }

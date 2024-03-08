@@ -5,6 +5,7 @@
  */
 package mx.argentick.ui;
 
+import com.sun.xml.internal.ws.util.StringUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,9 @@ public class ProfRegBeanUI implements Serializable {
         //Crear nuevo profesor -nombre,apellido y rfc viene de xhtml
         profesor.setIdProfesor(0);
         profesor.setUnidadList(new ArrayList());
+        profesor.setNombre(StringUtils.capitalize(profesor.getNombre()));
+        profesor.setApellidos(StringUtils.capitalize(profesor.getApellidos()));
+        profesor.setRfc(mayusculasConNumeros(profesor.getRfc()));
         try {
             //Revisar  que no se ingrese un rfc registrado
             if (helperProfesor.buscarPorParametro(profesor.getRfc(), "rfc").isEmpty()) {
@@ -134,6 +138,22 @@ public class ProfRegBeanUI implements Serializable {
         }
         return uac;
     }
+    
+    private String mayusculasConNumeros(String input) {
+    StringBuilder result = new StringBuilder();
+
+    for (char ch : input.toCharArray()) {
+        if (Character.isLetter(ch)) {
+            // Convertir letras a mayúsculas
+            result.append(Character.toUpperCase(ch));
+        } else {
+            // Mantener números intactos
+            result.append(ch);
+        }
+    }
+
+    return result.toString();
+}
 
     public Profesor getProfesor() {
         return profesor;

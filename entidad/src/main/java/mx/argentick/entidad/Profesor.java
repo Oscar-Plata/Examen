@@ -87,6 +87,10 @@ public class Profesor implements Serializable {
     public String getApellidos() {
         return apellidos;
     }
+    
+    public String getNombreCompleto(){
+        return nombre+" "+apellidos;
+    }
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
