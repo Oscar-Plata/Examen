@@ -25,8 +25,28 @@ public class indexBeanUI {
     public void init(){
         
     }
-    public void navegarXHTML(String destino){
+    public void navegarXHTML(int opc){
+        String destino="";
+        switch(opc){
+            case 1:
+                destino="/registroProfesores.xhtml";
+                break;
+            case 2:
+                destino="/registroUnidades.xhtml";
+                break;
+            case 3:
+                destino="/consultaProfesores.xhtml";
+                break;
+            case 4:
+                destino="/consultaUnidades.xhtml";
+                break;
+            case 5:
+                destino="/modificarProfesor.xhtml";
+                break;
+            
+        }
         try {
+            
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + destino);
         } catch (IOException ex) {
             System.out.println("Error: "+ex);

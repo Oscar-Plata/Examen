@@ -5,7 +5,6 @@
  */
 package mx.argentick.ui;
 
-import com.sun.xml.internal.ws.util.StringUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
@@ -44,7 +43,7 @@ public class UniRegBeanUI implements Serializable {
         //Valores por defecto para nuevo registro
         unidad.setIdUnidad(0);
         unidad.setProfesorList(new ArrayList());
-        unidad.setNombre(StringUtils.capitalize(unidad.getNombre()));
+        unidad.setNombre(capitalize(unidad.getNombre()));
         try {
             //Registrar unidad en base de datos
             int res = helper.guardarUnidad(unidad);
@@ -69,6 +68,9 @@ public class UniRegBeanUI implements Serializable {
         }
     }
 
+     private String capitalize(String s){
+        return s.substring(0, 1).toUpperCase()+s.substring(1);
+    }
     private void mensajeInfo(String titulo, String texto, FacesMessage.Severity tipo) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(tipo, "\t" + titulo, texto));
     }

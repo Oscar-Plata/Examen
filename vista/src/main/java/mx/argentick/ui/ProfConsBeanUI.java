@@ -17,7 +17,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import mx.argentick.entidad.Profesor;
-import mx.argentick.helper.ProfRegHelper;
+import mx.argentick.helper.ProfesorHelper;
 
 /**
  *
@@ -28,10 +28,10 @@ import mx.argentick.helper.ProfRegHelper;
 public class ProfConsBeanUI implements Serializable {
 
     private List<Profesor> lista;
-    private ProfRegHelper helper;
+    private ProfesorHelper helper;
 
     public ProfConsBeanUI() {
-        helper = new ProfRegHelper();
+        helper = new ProfesorHelper();
     }
 
     @PostConstruct

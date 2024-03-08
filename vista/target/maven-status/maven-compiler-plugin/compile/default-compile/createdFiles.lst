@@ -1,7 +1,8 @@
-mx\argentick\helper\ProfRegHelper.class
 mx\argentick\ui\UniConsBeanUI.class
 mx\argentick\ui\indexBeanUI.class
 mx\argentick\ui\UniRegBeanUI.class
+mx\argentick\ui\ProfModBeanUI.class
 mx\argentick\helper\UnidadHelper.class
+mx\argentick\helper\ProfesorHelper.class
 mx\argentick\ui\ProfConsBeanUI.class
 mx\argentick\ui\ProfRegBeanUI.class

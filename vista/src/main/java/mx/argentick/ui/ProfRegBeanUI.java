@@ -5,9 +5,9 @@
  */
 package mx.argentick.ui;
 
-import com.sun.xml.internal.ws.util.StringUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -18,7 +18,7 @@ import javax.faces.context.FacesContext;
 import javax.validation.constraints.Size;
 import mx.argentick.entidad.Profesor;
 import mx.argentick.entidad.Unidad;
-import mx.argentick.helper.ProfRegHelper;
+import mx.argentick.helper.ProfesorHelper;
 import mx.argentick.helper.UnidadHelper;
 
 /**
@@ -30,7 +30,7 @@ import mx.argentick.helper.UnidadHelper;
 
 public class ProfRegBeanUI implements Serializable {
 
-    private ProfRegHelper helperProfesor;
+    private ProfesorHelper helperProfesor;
     private UnidadHelper helperUnidad;
     private Profesor profesor;
     private String[] materiasSeleccionadas;
@@ -38,7 +38,7 @@ public class ProfRegBeanUI implements Serializable {
     private List<Unidad> materiasAsignadas;
 
     public ProfRegBeanUI() {
-        helperProfesor = new ProfRegHelper();
+        helperProfesor = new ProfesorHelper();
         helperUnidad = new UnidadHelper();
     }
 
@@ -66,9 +66,10 @@ public class ProfRegBeanUI implements Serializable {
         //Crear nuevo profesor -nombre,apellido y rfc viene de xhtml
         profesor.setIdProfesor(0);
         profesor.setUnidadList(new ArrayList());
-        profesor.setNombre(StringUtils.capitalize(profesor.getNombre()));
-        profesor.setApellidos(StringUtils.capitalize(profesor.getApellidos()));
+        profesor.setNombre(capitalize(profesor.getNombre()));
+        profesor.setApellidos(capitalize(profesor.getApellidos()));
         profesor.setRfc(mayusculasConNumeros(profesor.getRfc()));
+        System.out.println("REGMA"+ Arrays.toString(materiasSeleccionadas));
         try {
             //Revisar  que no se ingrese un rfc registrado
             if (helperProfesor.buscarPorParametro(profesor.getRfc(), "rfc").isEmpty()) {
@@ -137,6 +138,10 @@ public class ProfRegBeanUI implements Serializable {
             }
         }
         return uac;
+    }
+    
+    private String capitalize(String s){
+        return s.substring(0, 1).toUpperCase()+s.substring(1);
     }
     
     private String mayusculasConNumeros(String input) {
