@@ -46,4 +46,12 @@ public class ProfRegHelper implements Serializable{
     public void eliminarProfesor(Profesor profesor){
         ServiceFacadeLocator.getInstanceFacadeProfesor().eliminarProfesor(profesor);
     }
+    
+    /**
+     * 
+     * @return 
+     */
+    public List<Profesor> obtenerTodosOrden(){
+        return ServiceFacadeLocator.getInstanceFacadeProfesor().obtenerTodosOrden();
+    }
 }

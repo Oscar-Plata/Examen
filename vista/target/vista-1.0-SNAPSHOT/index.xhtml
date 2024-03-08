@@ -25,7 +25,6 @@
                 <p:outputLabel value="SCPUA - Sistema Catalogo de Profesores y Unidades de Aprendizaje" class="title"/>
             </p:toolbarGroup>
         </p:toolbar> 
-
         <p:panelGrid columns="5" style="width: 100%;margin-top: 5em" styleClass="ui-noborder" >
             <h:form >
                 <p:commandLink action="registroProfesores.xhtml" style="text-decoration: none;">
@@ -52,8 +51,8 @@
                 </p:commandLink>
             </h:form>
             <h:form>
-                <p:commandLink action="registroProfesores.xhtml" style="text-decoration: none;">
-                    <p:card styleClass="cardMenu">
+                <p:commandLink  action="consultaProfesores.xhtml" style="text-decoration: none;">
+                    <p:card styleClass="cardMenu" >
                         <f:facet name="header">
                             <img alt="user header" src="resources/backup.png"/>
                         </f:facet>
@@ -87,8 +86,6 @@
                     </p:card>
                 </p:commandLink>
             </h:form>
-            
-
         </p:panelGrid>
         <!--        <h:form style="margin-top: 5em">
                     <p:commandLink action="registroProfesores.xhtml" style="text-decoration: none;">

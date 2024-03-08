@@ -67,6 +67,14 @@ public class DelegateProfesor {
         ServiceLocator.getInstanceProfesorDAO().delete(profesor);
     }
     
+    /**
+     * 
+     * @return 
+     */
+    public List<Profesor> obtenerTodosOrden(){
+       return ServiceLocator.getInstanceProfesorDAO().executeQuery("SELECT * FROM Profesor ORDER BY nombre ASC");
+    }
+    
     
     
 }

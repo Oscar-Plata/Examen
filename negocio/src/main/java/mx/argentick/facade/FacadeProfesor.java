@@ -72,4 +72,12 @@ public class FacadeProfesor {
     public void eliminarProfesor(Profesor profesor){
         delegateProfesor.eliminarProfesor(profesor);
     }
+    
+    /**
+     * 
+     * @return 
+     */
+    public List<Profesor> obtenerTodosOrden(){
+        return delegateProfesor.obtenerTodosOrden();
+    }
 }
