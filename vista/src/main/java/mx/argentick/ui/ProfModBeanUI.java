@@ -142,18 +142,35 @@ public class ProfModBeanUI {
 //            System.out.println("SEMAT: " + Arrays.toString(materiasSeleccionadas));
             profesorSel.setUnidadList(obtenerUnidadesCheckbox(materiasSeleccionadas, unidades, profesorSel));
 //            System.out.println("P:" + profesorSel);
-           //ACTUALIZAR REGiSTRO
+            //ACTUALIZAR REGiSTRO
             helperProfesor.actualizarProfesor(profesorSel);
             //MENSAJE DE EXITO
-             mensajeInfo("Profesor Actualizado", profesorSel.getNombreCompleto(), FacesMessage.SEVERITY_INFO);
+            mensajeInfo("Profesor Actualizado", profesorSel.getNombreCompleto(), FacesMessage.SEVERITY_INFO);
         } catch (Exception e) {
-             mensajeInfo("Error ", "Algo salio mal :(", FacesMessage.SEVERITY_ERROR);
+            mensajeInfo("Error ", "Algo salio mal :(", FacesMessage.SEVERITY_ERROR);
         }
 
     }
-    
-    public void eliminarProfesor(){
+
+    public void eliminarProfesor() {
         System.out.println(idProfesorSel);
+        try {
+            Profesor aux=helperProfesor.buscarPorId(idProfesorSel);
+            // Desasignar profesor de las unidades
+            for (Unidad uAsignada : aux.getUnidadList()) {
+                uAsignada.getProfesorList().remove(aux);
+                helperUnidad.actualizarUnidad(uAsignada);
+            }
+            
+            aux.setUnidadList(new ArrayList());
+            helperProfesor.actualizarProfesor(aux);
+
+            profesores.remove(aux);
+            helperProfesor.eliminarProfesor(aux);
+            mensajeInfo("Profesor Eliminado", "Adios! " + aux.getNombreCompleto(), FacesMessage.SEVERITY_INFO);
+        } catch (Exception e) {
+            mensajeInfo("Error", "Algo salio mal", FacesMessage.SEVERITY_ERROR);
+        }
     }
 
     /**

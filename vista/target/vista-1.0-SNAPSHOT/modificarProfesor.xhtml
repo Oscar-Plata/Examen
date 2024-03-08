@@ -58,11 +58,11 @@
                     </p:column>
                     <p:column>
                         <p:commandButton icon="pi pi-user-edit" style="background-color: #f0f6b9;color: black;border: 0px;"
-                                          action="#{modProf.editarProfesor}" process="@this">
+                                          action="#{modProf.editarProfesor}" process="@this" update=":ftablas:messages  :ftablas:tablaProfes">
                             <f:setPropertyActionListener target="#{modProf.idProfesorSel}" value="#{p.idProfesor}" />
                         </p:commandButton>
                         <p:commandButton icon="pi pi-trash" style="background-color: #ff1d44;color: black;border: 0px;margin-left: 0.5em"
-                                         action="#{modProf.eliminarProfesor()}" process="@this">
+                                         action="#{modProf.eliminarProfesor()}" process="@this" update=":ftablas:messages  :ftablas:tablaProfes">
                         <f:setPropertyActionListener target="#{modProf.idProfesorSel}" value="#{p.idProfesor}" />
                         </p:commandButton>
                     </p:column>
